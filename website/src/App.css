@@ -1,0 +1,60 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+.container{
+  flex: 1;
+  padding-top: 100px;
+
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.App-Background{
+background-image:;
+}
+.Form-Style{
+  position: absolute;
+}
+
+@keyframes Image-Transition {
+  from { transform: matrix(1.06, 1.84, 0.54, 2.8, 466px, 482px);}
+}
+
+.Img-Style{
+  width: 100%;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transform: rotate(90deg);
+}
+.Card-Style{
+  width: 500px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.Button-Style{
+  display: inline-block;
+
+  margin-right: 0;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
