@@ -1,1 +1,0 @@
-This project contains code pertaining to moments database
