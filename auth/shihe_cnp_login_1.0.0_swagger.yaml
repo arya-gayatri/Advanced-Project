@@ -1,0 +1,244 @@
+swagger: '2.0'
+info:
+  description: |
+    Defined the APIs have been included for the following components: 
+    1. User register
+    2. Post and get token 
+    3. Post, update and get picture.
+
+  version: 1.0.0
+  title: APIs for login
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: slv@cs.stonybrook.edu
+tags:
+  - name: user
+    description: This API is provides user access and authentication.
+
+  - name: token
+    description: This API is used to operate token
+    
+
+paths:
+  /api/auth/token/service/{serviceType}/user/{userName}:
+    get:
+      tags:
+        - token
+      summary: get token with user's gmail and serviceType.
+      operationId: get_token
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: serviceType
+          in: path
+          description: google/fb
+          required: true
+          type: string
+          format: int64
+          
+        - name: userName
+          in: path
+          type: string
+          required: true
+          description: user's gmail account
+      responses:
+        '200':
+          description: Authentication Token
+          schema:
+            $ref: '#/definitions/Token'
+        '404':
+          description:
+      security:
+        - api_key: []
+        
+  /api/auth/token/service/{serviceType}:
+    post:
+      tags:
+        - token
+      summary: create a token with code and serviceType
+      operationId: post_token
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: serviceType
+          in: path
+          description: serviceType
+          required: true
+          type: string
+          format: int64
+          
+        - name: authcode
+          in: formData
+          description: use authcode got from google callback
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/User'
+            
+        '404':
+          description: 
+      security:
+        - api_key: []
+  
+  /api/auth/user/authurl:
+    get:
+      tags:
+        - user
+      summary: start endpoint for frontend, to get the gmail list for login 
+      description: This is used to generate google authentication url
+      operationId: userAuthurl
+      produces:
+        - application/json
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Url'
+        400:
+          description: Invalid operation 
+
+  /api/auth/service/user/{userName}:
+    get:
+      description: This is used to get user's types
+      produces:
+        - application/json
+      responses:
+        200:
+          schema:
+            $ref: '#/definitions/ServiceType'
+
+  /api/auth/logout/service/{serviceType}/user/{userName}:
+    post:
+      description: This is used to logout
+      produces:
+        - application/json
+      responses:
+        200:
+          schema:
+            $ref: '#/definitions/ServiceType'
+          
+
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+    
+    
+definitions:
+  User:
+    type: object
+    required:
+      - status
+      - user_name
+      - token
+    properties:
+      status:
+        type: integer
+        enum:
+          - 1
+          - 0
+        default: 1
+      user_name:
+        type: string
+      token:
+        type: string
+    xml:
+      name: User
+
+  ServiceType:
+    type: object
+    required:
+      - status
+      - service_type
+    properties:
+      status:
+        type: integer
+        enum:
+          - 1
+          - 0
+        default: 1
+      service_type:
+        type: list
+      
+  Url:
+    type: object
+    required:
+      - status
+      - authurl
+    properties:
+      status:
+        type: integer
+        enum:
+          - 1
+          - 0
+        default: 1
+      authurl:
+        type: string
+    xml:
+      name: url
+      
+  Token:
+    type: object
+    required:
+      - status
+      - token
+    properties:
+      status:
+        type: integer
+        enum:
+          - 1
+          - 0
+        default: 1
+      token:
+        type: string
+    xml:
+      name: Token
+
+  Response:
+    type: object
+    required:
+      - status
+    properties:
+      status:
+        type: integer
+        enum:
+          - 1
+          - 0
+        default: 1
+      
+  Picture:
+    type: object
+    required:
+      - gmail
+      - pictureId
+      - time
+      - place
+      - description 
+    properties:
+      gmail:
+        type: string
+      pictureId:
+        type: string
+      time:
+        type: string
+      place:
+        type: string
+      description:
+        type: string
+    xml:
+      name: Picture
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+# basePath: /shihe/merged/1.0.0
+schemes:
+ - https
+# Added by API Auto Mocking Plugin
+basePath: /shihe/cnp_login/1.0.0

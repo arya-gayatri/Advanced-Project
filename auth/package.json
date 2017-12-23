@@ -1,0 +1,33 @@
+{
+  "name": "baycrest",
+  "version": "1.0.0",
+  "description": "Restful baycrestApi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "RESTful"
+  ],
+  "author": "xiaorong.ma",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "express": "^4.16.2",
+    "fs": "0.0.1-security",
+    "googleapis": "^22.2.0",
+    "http": "0.0.0",
+    "log4js": "^2.3.12",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.13.0",
+    "nconf": "^0.9.1",
+    "openurl": "^1.1.1",
+    "opn": "^5.1.0",
+    "querystring": "^0.2.0",
+    "request": "^2.83.0"
+  }
+}
