@@ -1,0 +1,17 @@
+version: "2"
+services:
+  moments_app:
+    container_name: moments_app
+    restart: always
+    image: dev.cewit.stonybrook.edu:7443/pensive/apis/moments:latest
+    ports:
+      - "3002:3002"
+    links:
+      - moments_mongo
+  moments_mongo:
+    container_name: moments_mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
